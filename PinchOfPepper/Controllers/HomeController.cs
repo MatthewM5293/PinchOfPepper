@@ -15,6 +15,7 @@ namespace PinchOfPepper.Controllers
 
         public IActionResult Index()
         {
+            //hi
             return View();
         }
 
