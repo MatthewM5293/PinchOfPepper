@@ -5,23 +5,23 @@ namespace PinchOfPepper.Models
     public class Article
     {
         [Key]
-        private int Id { get; set; }
+        public int Id { get; set; }
         [Required]
-        private string title { get; set; }
+        public string Title { get; set; }
         [Required]
-        private string description { get; set; }
+        public string Description { get; set; }
         [Required]
-        private string articleText { get; set; }
+        public string ArticleText { get; set; }
         [Required]
-        private string authorName { get; set; }
+        public string AuthorName { get; set; }
         [Required]
-        private DateTime date { get; set; }
+        public DateTime Date { get; set; }
         [Required]
-        private string thumbnail { get; set; }
+        public string Thumbnail { get; set; }
         [Required]
-        private string tag { get; set; }
-        private string? image1 { get; set; }
-        private string? image2 { get; set; }
+        public string Tag { get; set; }
+        public string? Image1 { get; set; }
+        public string? Image2 { get; set; }
 
         public Article()
         {
@@ -29,15 +29,15 @@ namespace PinchOfPepper.Models
 
         public Article(string title, string description, string articleText, string authorName, DateTime date, string thumbnail, string tag, string? image1, string? image2)
         {
-            this.title = title;
-            this.description = description;
-            this.articleText = articleText;
-            this.authorName = authorName;
-            this.date = date;
-            this.thumbnail = thumbnail;
-            this.tag = tag;
-            this.image1 = image1;
-            this.image2 = image2;
+            this.Title = title;
+            this.Description = description;
+            this.ArticleText = articleText;
+            this.AuthorName = authorName;
+            this.Date = date;
+            this.Thumbnail = thumbnail;
+            this.Tag = tag;
+            this.Image1 = image1;
+            this.Image2 = image2;
         }
     }
 }

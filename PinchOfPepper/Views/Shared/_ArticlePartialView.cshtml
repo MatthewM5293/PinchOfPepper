@@ -1,0 +1,9 @@
+﻿@model Article
+
+@if (Model != null)
+{
+    <h1>@Model.Title</h1>
+    <h2>@Model.AuthorName @Model.Date</h2>
+    @Model.Image1
+    <p>@Model.ArticleText</p>
+}
