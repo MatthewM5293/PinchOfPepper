@@ -7,7 +7,9 @@ namespace PinchOfPepper.Models
         [Key]
         private int Id { get; set; }
         [Required]
-        private string Title { get; set; }
+        private string title { get; set; }
+        [Required]
+        private string description { get; set; }
         [Required]
         private string articleText { get; set; }
         [Required]
@@ -16,6 +18,8 @@ namespace PinchOfPepper.Models
         private DateTime date { get; set; }
         [Required]
         private string thumbnail { get; set; }
+        [Required]
+        private string tag { get; set; }
         private string? image1 { get; set; }
         private string? image2 { get; set; }
 
@@ -23,13 +27,15 @@ namespace PinchOfPepper.Models
         {
         }
 
-        public Article(string title, string articleText, string authorName, DateTime date, string thumbnail, string? image1, string? image2)
+        public Article(string title, string description, string articleText, string authorName, DateTime date, string thumbnail, string tag, string? image1, string? image2)
         {
-            Title = title;
+            this.title = title;
+            this.description = description;
             this.articleText = articleText;
             this.authorName = authorName;
             this.date = date;
             this.thumbnail = thumbnail;
+            this.tag = tag;
             this.image1 = image1;
             this.image2 = image2;
         }
