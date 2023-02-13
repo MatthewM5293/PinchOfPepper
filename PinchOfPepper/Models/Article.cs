@@ -8,7 +8,7 @@ namespace PinchOfPepper.Models
         public int Id { get; set; }
         
         [Required]
-        [Range(0, 20)]
+        [Range(0, 100)]
         public string Title { get; set; }
         
         [Required]
