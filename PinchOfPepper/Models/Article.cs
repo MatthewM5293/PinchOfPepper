@@ -6,18 +6,29 @@ namespace PinchOfPepper.Models
     {
         [Key]
         public int Id { get; set; }
+        
         [Required]
+        [Range(0, 20)]
         public string Title { get; set; }
+        
         [Required]
+        [Range(0, 100)]
         public string Description { get; set; }
+        
         [Required]
+        [Range(0, 2500)]
         public string ArticleText { get; set; }
+        
         [Required]
+        [Range(0, 30)]
         public string AuthorName { get; set; }
+        
         [Required]
         public DateTime Date { get; set; }
+        
         [Required]
         public string Thumbnail { get; set; }
+        
         [Required]
         public string Tag { get; set; }
         public string? Image1 { get; set; }
