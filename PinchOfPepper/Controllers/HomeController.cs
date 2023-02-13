@@ -8,6 +8,17 @@ namespace PinchOfPepper.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        static List<Article> articles = new List<Article>
+        {
+
+        };
+
+        static List<User> users = new List<User>
+        {
+
+        };
+
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
