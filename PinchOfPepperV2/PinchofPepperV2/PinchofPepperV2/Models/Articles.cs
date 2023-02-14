@@ -26,6 +26,8 @@ namespace PinchofPepperV2.Models
         [Required]
         public DateTime Date { get; set; }
 
+        public DateTime? EditDate { get; set; }
+
         [Required]
         public string Thumbnail { get; set; }
 
@@ -38,13 +40,14 @@ namespace PinchofPepperV2.Models
         {
         }
 
-        public Article(string title, string description, string articleText, string authorName, DateTime date, string thumbnail, string tag, string? image1, string? image2)
+        public Article(string title, string description, string articleText, string authorName, DateTime date, DateTime editdate, string thumbnail, string tag, string? image1, string? image2)
         {
             this.Title = title;
             this.Description = description;
             this.ArticleText = articleText;
             this.AuthorName = authorName;
             this.Date = date;
+            this.EditDate = editdate;
             this.Thumbnail = thumbnail;
             this.Tag = tag;
             this.Image1 = image1;
