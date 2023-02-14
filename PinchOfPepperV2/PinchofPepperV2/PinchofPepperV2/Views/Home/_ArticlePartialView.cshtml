@@ -1,0 +1,14 @@
+﻿@model Article
+
+@if (Model != null)
+{
+    <body class="align-content-center">
+        <h1>@Model.Title</h1>
+        <h2>@Model.AuthorName @Model.Date</h2>
+        <div class="text-center">@Model.Image1</div>
+        <p class="text-center">@Model.ArticleText</p>
+
+
+        <footer class="footer card-footer">@Model.Tag</footer>
+    </body>
+}

@@ -1,0 +1,15 @@
+﻿@model Article
+
+@if (Model != null)
+{
+    <form asp-controller="Home" asp-action="CreateArticle" method="post">
+        <input asp-for="Title" placeholder="Title of Article">
+
+        <div class="form-group">
+            <label class="form-label mt-4">Write your heart away!</label>
+            <textarea asp-for="ArticleText" class="form-control" rows="30" spellcheck="true"></textarea>
+        </div>
+
+        <input asp-for="@Model.AuthorName" type="hidden" placeholder="Your name here" />
+    </form>
+}
