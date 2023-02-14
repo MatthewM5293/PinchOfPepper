@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PinchofPepperV2.Models;
 
 namespace PinchofPepperV2.Data
 {
@@ -9,5 +10,7 @@ namespace PinchofPepperV2.Data
             : base(options)
         {
         }
+
+        public DbSet<Article> Articles { get; set; }
     }
 }
