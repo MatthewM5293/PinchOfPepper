@@ -1,8 +1,0 @@
-﻿@model Article
-
-@if (Model != null)
-{
-    <form asp-controller="Home" asp-action="CreateArticle" method="post">
-        <input asp-for="Title" placeholder="Title of Article">
-    </form>
-}
