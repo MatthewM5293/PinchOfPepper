@@ -361,4 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/PinchOfPepperV2/PinchofPepperV2/PinchofPepperV2/Migrations
+/PinchOfPepperV2/PinchofPepperV2/PinchofPepperV2/Data/Migrations
