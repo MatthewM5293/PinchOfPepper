@@ -9,11 +9,11 @@ using PinchofPepperV2.Data;
 
 #nullable disable
 
-namespace PinchofPepperV2.Migrations
+namespace PinchofPepperV2.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230214015141_changes register")]
-    partial class changesregister
+    [Migration("20230214235659_Articles")]
+    partial class Articles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
