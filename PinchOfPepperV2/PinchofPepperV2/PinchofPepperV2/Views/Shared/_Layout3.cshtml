@@ -7,33 +7,33 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PinchofPepperV2.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/bootstrap.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom">
+       <nav class="navbar navbar-expand-lg navbar-light bg-light bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PinchofPepperV2</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PinchOfPepper</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
             <div class="d-flex">
-                <div class="form-check form-switch ms-auto mt-3 me-3">
+                <div class="form-check form-switch ms-3">
                     <label class="form-check-label ms-3" for="lightSwitch">
-                        <svg xmlns="http://www.w3.org/2000/svg"
+                        @*<svg xmlns="http://www.w3.org/2000/svg"
                              width="25"
                              height="25"
                              fill="currentColor"
@@ -55,9 +55,9 @@
                                      5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464
                                      4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.
                                      707l1.414 1.414a.5.5 0 0 1 0 .708z" />
-                        </svg>
+                        </svg>*@
                     </label>
-                    <input class="form-check-input" type="checkbox" id="lightSwitch" />
+                    <input class="form-check-input" type="checkbox" id="lightSwitch" style="transform: scale(1.8)"/>
                 </div>
             </div>
         </nav>
