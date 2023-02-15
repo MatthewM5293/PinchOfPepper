@@ -12,7 +12,7 @@ using PinchofPepperV2.Data;
 namespace PinchofPepperV2.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230214235615_Articles")]
+    [Migration("20230214235659_Articles")]
     partial class Articles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
