@@ -19,12 +19,12 @@ namespace PinchofPepperV2.Controllers
         //    _logger = logger;
         //}
 
-        //IArticleAccessLayer dal;
+        IArticleAccessLayer dal;
 
-        //public HomeController(IArticleAccessLayer edal)
-        //{
-        //    dal = edal;
-        //}
+        public HomeController(IArticleAccessLayer edal)
+        {
+            dal = edal;
+        }
 
         public IActionResult Index()
         {
@@ -38,11 +38,16 @@ namespace PinchofPepperV2.Controllers
         [HttpPost]
         public IActionResult CreateArticle(Article a)
         {
-            if(a.Title != null && a.Description != null)
+            if(a.Title != null && a.ArticleText != null)
             {
-                //dal.AddArticle(a);
-                return RedirectToAction("Home", "Home");
+                dal.AddArticle(a);
+                return RedirectToAction("Index", "Home");
             }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult CreateArticle()
+        {
             return View();
         }
 
