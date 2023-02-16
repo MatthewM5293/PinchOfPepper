@@ -11,6 +11,8 @@ namespace PinchofPepperV2.Data
         {
         }
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
         public DbSet<Article> Articles { get; set; }
     }
 }
