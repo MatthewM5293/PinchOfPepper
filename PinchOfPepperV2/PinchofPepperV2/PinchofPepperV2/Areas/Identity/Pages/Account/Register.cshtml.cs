@@ -103,6 +103,8 @@ namespace PinchofPepperV2.Areas.Identity.Pages.Account
             public string FirstName { get; set; }
             [Required]
             public string LastName { get; set; }
+            [Required]
+            public string Name { get; set; }
         }
 
 
@@ -123,6 +125,10 @@ namespace PinchofPepperV2.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                user.UserName = Input.Name;
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
 
                 if (result.Succeeded)
                 {
