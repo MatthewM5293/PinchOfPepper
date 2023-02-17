@@ -36,8 +36,7 @@ namespace PinchofPepperV2.Areas.Identity.Pages.Account
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender
-            )
+            IEmailSender emailSender)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -104,8 +103,6 @@ namespace PinchofPepperV2.Areas.Identity.Pages.Account
             public string FirstName { get; set; }
             [Required]
             public string LastName { get; set; }
-            [Required]
-            public string Name { get; set; }
         }
 
 
@@ -125,11 +122,6 @@ namespace PinchofPepperV2.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                //custom addons
-                user.UserName = Input.Name;
-                user.FirstName = Input.FirstName;
-                user.LastName = Input.LastName;
-
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
