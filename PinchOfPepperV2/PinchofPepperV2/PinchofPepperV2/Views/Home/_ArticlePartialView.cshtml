@@ -2,17 +2,44 @@
 
 @if (Model != null)
 {
-    <body class="align-content-center">
-        <h1>@Model.Title</h1>
-        <h2>@Model.AuthorName @Model.Date</h2>
-        <div class="text-center">@Model.Image1</div>
-        <p class="text-center">@Model.ArticleText</p>
 
+    <div class="align-content-center grid-container" style="flex-basis:33%;">
+        <table>
+            <tr>
+                <th>
+                    <a asp-controller="Home" asp-action="ShowArticle" asp-route-id="@Model.Id"><img src="@Model.Thumbnail" onclick="ShowArticle"/></a>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <h7>@Model.Tag</h7>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3><strong><i>@Model.Title</i></strong></h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5>@Model.Description</h5>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-        <footer class="footer card-footer">@Model.Tag</footer>
-    </body>
 }
 else
 {
     <h1>Nothing to see here!</h1>
 }
+
+
+@*    <body class="align-content-center">
+        <h1>@Model.Title</h1>
+        <h2>@Model.AuthorName @Model.Date</h2>
+        <div class="text-center">@Model.Image1</div>
+        <p class="text-center">@Model.ArticleText</p>
+
+        <footer class="footer card-footer">@Model.Tag</footer>
+    </body>*@

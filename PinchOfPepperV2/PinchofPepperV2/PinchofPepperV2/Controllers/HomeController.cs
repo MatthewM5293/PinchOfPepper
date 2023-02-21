@@ -2,6 +2,8 @@
 using PinchofPepperV2.Models;
 using System.Diagnostics;
 using PinchofPepperV2.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace PinchofPepperV2.Controllers
 {
@@ -28,13 +30,20 @@ namespace PinchofPepperV2.Controllers
 
         public IActionResult Index()
         {
-            return View(/*Articlelist*/);
+            return View(dal.GetArticles());
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
+
+        public IActionResult ShowArticle(int Id)
+        {
+            return View(dal.GetArticle(Id));
+        }
+
+        [Authorize]
         [HttpGet]
         public IActionResult CreateArticle()
         {
@@ -46,6 +55,8 @@ namespace PinchofPepperV2.Controllers
         {
             if(ModelState.IsValid)
             {
+                a.UserID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
                 dal.AddArticle(a);
                 return RedirectToAction("Index", "Home");
             }

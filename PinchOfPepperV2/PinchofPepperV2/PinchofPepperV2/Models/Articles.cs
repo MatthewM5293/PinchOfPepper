@@ -31,6 +31,8 @@ namespace PinchofPepperV2.Models
         public string Tag { get; set; }
         public string? Image1 { get; set; }
         public string? Image2 { get; set; }
+        //[Required]
+        public string? UserID { get; set; }
 
         public Article()
         {
