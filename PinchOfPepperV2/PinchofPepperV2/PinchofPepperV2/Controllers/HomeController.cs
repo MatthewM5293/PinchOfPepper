@@ -4,6 +4,8 @@ using System.Diagnostics;
 using PinchofPepperV2.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using System.Net.Mail;
+using System.Net;
 
 namespace PinchofPepperV2.Controllers
 {
@@ -67,6 +69,33 @@ namespace PinchofPepperV2.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Email()
+        {
+            var client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
+            {
+                Credentials = new NetworkCredential("515c6d0a0cfb9d", "8dffeaabb6464b"),
+                EnableSsl = true
+            };
+            client.Send("POP@pinchofpepper.com", "insertUserEmailHere", "Account Created!", "Congrats! Youve created an account on Pinch of Pepper");
+            Console.WriteLine("Sent");
+            Console.ReadLine();
+
+            //using (SmtpClient smtp = new SmtpClient())
+            //{
+            //    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //    smtp.UseDefaultCredentials = false;
+            //    smtp.EnableSsl = true;
+            //    smtp.Host = "smtp.gmail.com";
+            //    smtp.Port = 465;
+            //    smtp.Credentials = new NetworkCredential("hattyhattington2003@gmail.com", "DanPaladin6012!");
+            //    smtp.Timeout = 20000;
+
+            //    smtp.Send("rsorensen@student.neumont.edu", "averystephens0@gmail.com", "Hello world!", "testbody123");
+            //    Console.WriteLine("Sent");
+            //}
+            return RedirectToAction("Index", "Home");
         }
     }
 }
