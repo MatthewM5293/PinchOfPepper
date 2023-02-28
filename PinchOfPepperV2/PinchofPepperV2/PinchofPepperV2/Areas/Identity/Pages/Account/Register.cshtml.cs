@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
@@ -18,7 +20,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using PinchofPepperV2.Controllers;
 using PinchofPepperV2.Models;
+using PinchofPepperV2.Areas.Identity.Pages.Account.Manage;
 
 namespace PinchofPepperV2.Areas.Identity.Pages.Account
 {
@@ -145,6 +149,8 @@ namespace PinchofPepperV2.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                    Emael.EmaelSend(Input.Email.ToString(), "Account Created!", "Congrats! Youve created an account on Pinch of Pepper");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

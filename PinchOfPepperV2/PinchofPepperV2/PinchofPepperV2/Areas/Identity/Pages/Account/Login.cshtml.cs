@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using PinchofPepperV2.Models;
 
 namespace PinchofPepperV2.Areas.Identity.Pages.Account
 {
@@ -115,6 +116,7 @@ namespace PinchofPepperV2.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    Emael.EmaelSend(Input.Email.ToString(), "Signed in", $"You signed in on {DateTime.Now.ToShortDateString()} at {DateTime.Now.ToShortTimeString()}");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
