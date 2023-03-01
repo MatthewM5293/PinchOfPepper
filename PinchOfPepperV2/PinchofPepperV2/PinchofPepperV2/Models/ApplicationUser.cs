@@ -9,5 +9,8 @@ namespace PinchofPepperV2.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+
+        [Required]
+        public string Name { get; set; }
     }
 }

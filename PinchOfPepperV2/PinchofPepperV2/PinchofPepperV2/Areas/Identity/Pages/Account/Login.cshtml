@@ -14,7 +14,7 @@
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating text-dark">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                    <input asp-for="Input.Email" class="form-control" autocomplete="email" aria-required="true" />
                     <label asp-for="Input.Email" class="form-label"></label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
@@ -54,13 +54,7 @@
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
+                {                    
                 }
                 else
                 {
