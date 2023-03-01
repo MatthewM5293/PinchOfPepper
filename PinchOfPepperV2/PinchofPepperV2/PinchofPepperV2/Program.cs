@@ -61,6 +61,13 @@ namespace PinchofPepperV2
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            //easter egg
+            app.MapControllerRoute(
+                name: "EasterEgg",
+                pattern: "{*bruh}",
+                defaults: new { controller = "Home", action = "EasterEgg" });
+
+
             app.MapRazorPages();
 
             app.Run();

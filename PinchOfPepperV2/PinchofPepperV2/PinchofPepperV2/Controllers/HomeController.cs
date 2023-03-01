@@ -71,6 +71,11 @@ namespace PinchofPepperV2.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        public IActionResult EasterEgg() 
+        {
+            return Redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        }
+
         //public void EmaelSender(string userEmail)
         //{
         //    var client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
