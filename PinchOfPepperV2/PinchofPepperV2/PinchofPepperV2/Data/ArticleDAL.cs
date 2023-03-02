@@ -44,5 +44,21 @@ namespace PinchofPepperV2.Data
         {
             throw new NotImplementedException();
         }
+
+        public string GetUserFirstName(string userId)
+        {
+            var dbUsers = db.ApplicationUsers.Select(user => new { user.FirstName }).ToList();
+            return dbUsers.First().FirstName;
+        }
+        public string GetUserLastName(string userId)
+        {
+            var dbUsers = db.ApplicationUsers.Select(user => new { user.LastName }).ToList();
+            return dbUsers.First().LastName;
+        }
+        public string GetUserName(string userId)
+        {
+            var dbUsers = db.ApplicationUsers.Select(user => new { user.Name }).ToList();
+            return dbUsers.First().Name;
+        }
     }
 }
