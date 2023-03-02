@@ -16,4 +16,19 @@ namespace PinchofPepperV2.Models
             Console.WriteLine("Sent");
         }
     }
+
+    public static class LocalUsername
+    {
+        public static string localName = "";
+        public static void SetLocalUsername(string UN) 
+        {
+            localName = UN;
+        }
+
+        public static string getLocalUsername(string UN) 
+        {
+            return localName;
+        }
+    }
+
 }

@@ -12,5 +12,9 @@ namespace PinchofPepperV2.Interfaces
         Article GetArticle(int? id);
 
         IEnumerable<Article> FilterArticles(string tags);
+
+        public string GetUserFirstName(string userId);
+        public string GetUserLastName(string userId);
+        public string GetUserName(string userId);
     }
 }

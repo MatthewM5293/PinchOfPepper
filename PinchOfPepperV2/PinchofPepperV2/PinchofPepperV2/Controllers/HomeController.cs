@@ -9,6 +9,7 @@ using System.Net;
 
 namespace PinchofPepperV2.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         //private static List<Article> Articlelist = new List<Article>
@@ -32,6 +33,18 @@ namespace PinchofPepperV2.Controllers
 
         public IActionResult Index()
         {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+            if (userId == "" || userId == null)
+            {
+                
+            }
+            else 
+            {
+                string test = dal.GetUserName(userId);
+                LocalUsername.SetLocalUsername(test);
+            }
+
+
             return View(dal.GetArticles());
         }
 
