@@ -33,34 +33,10 @@ namespace PinchofPepperV2.Models
         public string? Image2 { get; set; }
         //[Required]
         public string? UserID { get; set; }
+        public IEnumerable<CommentModel>? Comments { get; set; }
 
         public Article()
         {
-        }
-
-        public Article(string title, string description, string articleText, string authorName, DateTime date, DateTime? editdate, string thumbnail, string tag, string? image1, string? image2)
-        {
-            this.Title = title;
-            this.Description = description;
-            this.ArticleText = articleText;
-            this.AuthorName = authorName;
-            this.Date = date;
-            this.EditDate = editdate;
-            this.Thumbnail = thumbnail;
-            this.Tag = tag;
-            this.Image1 = image1;
-            this.Image2 = image2;
-        }
-        
-        public Article(string title, string description, string articleText, string authorName, DateTime date, string thumbnail, string tag)
-        {
-            this.Title = title;
-            this.Description = description;
-            this.ArticleText = articleText;
-            this.AuthorName = authorName;
-            this.Date = date;
-            this.Thumbnail = thumbnail;
-            this.Tag = tag;
         }
     }
 }

@@ -1,0 +1,29 @@
+﻿@model CommentModel
+<form asp-controller="home" asp-action="AddComment" method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Post</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <input asp-for="ArticleId" type="hidden" value="0" />
+            <input asp-for="UserID" type="hidden" value="TEMP" />
+
+            <input asp-for="Username" type="hidden" value="TEMP" />
+            <input asp-for="CommentDate" type="hidden" value="@DateTime.Now" />
+        </div>
+        <div class="mb-3">
+            @*            asp binds it to the title in the model*@
+            <label asp-for="CommentText"></label>
+            <input asp-for="CommentText" class="form-control" placeholder="Type here!" />
+            <span asp-validation-for="CommentText" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            Post Comment
+        </button>
+
+        <a asp-controller="Home" asp-action="ShowArticle" asp-route-id="@ViewBag.ArticleID" class="btn btn-secondary">
+            Back to Article
+        </a>
+    </div>
+</form>

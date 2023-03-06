@@ -1,0 +1,22 @@
+﻿@model CommentModel
+
+@if (Model != null)
+{
+    <div class="list-group" id="@Model.Id.ToString()">
+        @*<a asp-controller="Home" asp-action="ProfilePost" asp-route-id="@Model.UserID" class="list-group-item list-group-item-action active">
+            @Model.Username
+        </a>*@
+
+        <div class="list-group-item list-group-item-action active">
+            @Model.Username
+        </div>
+
+        <a class="list-group-item list-group-item-action">@Model.CommentText</a>
+        <a class="list-group-item list-group-item-action disabled">Posted on: @Model.CommentDate.ToShortDateString()</a>
+        @if (Model.EditDate != null)
+        {
+            <a class="list-group-item list-group-item-action disabled">Edited on: @Model.EditDate.Value.ToShortDateString()</a>
+        }
+    </div>
+}
+

@@ -15,7 +15,6 @@
         <p class="text-center">@Model.ArticleText</p>
 
         <footer class="footer card-footer">@Model.Tag</footer>
-    </body>
 
     @if (ViewBag.UserId == Model.UserID)
     {
@@ -31,9 +30,9 @@
     }
 
     @*comments*@
-    @*<div class="card-footer text-muted">
+    <div class="card-footer text-muted">
         <form asp-controller="Home" asp-action="AddComment" method="get">
-            <input name="PostID" type="hidden" value="@Model.Id" />
+            <input name="ArticleId" type="hidden" value="@Model.Id" />
             <button type="submit" class="btn btn-success">Add Comment</button>
         </form>
         <div class="card-footer text-muted">
@@ -42,7 +41,9 @@
 
                 foreach (CommentModel comment in @Model.Comments)
                 {
-                    <partial name="_CommentPartialView.cshtml" for="@comment" />
+                    <div class="card-footer text-muted"> 
+                        <partial name="_CommentsPartialView.cshtml" for="@comment" />
+                    </div>
 
                     @if (ViewBag.UserId == comment.UserID)
                     {
@@ -57,11 +58,18 @@
                         </div>
                     }
                 }
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
 
             }
         </div>
     </div>
-        *@
+    </body>
 
 }
 else

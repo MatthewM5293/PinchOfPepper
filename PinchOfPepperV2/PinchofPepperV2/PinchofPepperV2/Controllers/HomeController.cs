@@ -50,6 +50,15 @@ namespace PinchofPepperV2.Controllers
         {
             UserIdVerify();
 
+            if (Id == null) return NotFound();
+            var temp = dal.GetArticles();
+
+            //shows comments
+            foreach (Article model in temp)
+            {
+                model.Comments = dal.GetPostComments(model.Id);
+            }
+
             return View(dal.GetArticle(Id));
         }
 
@@ -139,6 +148,105 @@ namespace PinchofPepperV2.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        //comments
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult AddComment(int? ArticleID)
+        {
+            ViewBag.ArticleID = ArticleID;
+            //global variable
+            ArticleId = ArticleID;
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddComment(CommentModel comment)
+        {
+            var id = ArticleId;
+
+            var temp = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ApplicationUser foundUser = dal.GetUser(temp);
+            Article foundArticle = dal.GetArticle(id);
+
+            if (id == null || foundArticle == null || foundUser == null) return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                comment.ArticleId = foundArticle.Id;
+                comment.UserID = foundUser.Id;
+
+                comment.Username = foundUser.Name;
+
+                dal.AddComment(comment);
+
+                var RouteValues = new RouteValueDictionary {
+                    { "id", foundArticle.Id }
+                };
+
+
+
+                return RedirectToAction("ShowArticle", "Home", routeValues: RouteValues, fragment: comment.Id.ToString());
+            }
+
+            return View();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult EditComment(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            CommentModel foundComment = dal.GetComment(id);
+
+            if (foundComment == null) return NotFound();
+
+            return View(foundComment);
+        }
+
+        [HttpPost]
+        public IActionResult EditComment(CommentModel c)
+        {
+            if (ModelState.IsValid)
+            {
+                dal.EditComment(c);
+
+                var RouteValues = new RouteValueDictionary {
+                    { "id", c.ArticleId }
+                };
+
+                return RedirectToAction("ShowArticle", "Home", routeValues: RouteValues, fragment: c.Id.ToString());
+            }
+            return View();
+
+        }
+
+        public IActionResult DeleteComment(int? id)
+        {
+            CommentModel foundComment;
+            if (dal.GetComment(id) == null)
+            {
+                //validator
+                ModelState.AddModelError("CommentId", "Cannot find comment to delete");
+            }
+            if (ModelState.IsValid)
+            {
+                foundComment = dal.GetComment(id);
+
+                //temp delete
+                dal.RemoveComment(id);
+            }
+            else
+            {
+                return View();
+            }
+            return RedirectToAction("Article", "Home", foundComment.ArticleId);
+        }
+
 
         public void UserIdVerify()
         {
