@@ -12,17 +12,8 @@ namespace PinchofPepperV2.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        //private static List<Article> Articlelist = new List<Article>
-        //{
-        //    new Article("T", "test", "Joe Mama", "J Moe", DateTime.Now, null, "https://img.buzzfeed.com/buzzfeed-static/static/2018-10/2/18/campaign_images/buzzfeed-prod-web-06/15-of-the-weirdest-and-darkest-stock-photos-that--2-21628-1538520564-0_dblbig.jpg?resize=1200:*", "tag", null, null)
-        //};
-
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
+        private static string UserId;
+        private static int? ArticleId;
 
         IArticleAccessLayer dal;
 
@@ -40,6 +31,7 @@ namespace PinchofPepperV2.Controllers
             }
             else 
             {
+                UserIdVerify();
                 string test = dal.GetUserName(userId);
                 LocalUsername.SetLocalUsername(test);
             }
@@ -53,8 +45,11 @@ namespace PinchofPepperV2.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult ShowArticle(int Id)
         {
+            UserIdVerify();
+
             return View(dal.GetArticle(Id));
         }
 
@@ -68,6 +63,7 @@ namespace PinchofPepperV2.Controllers
         [HttpPost]
         public IActionResult CreateArticle(Article a)
         {
+            a.AuthorName = dal.GetUserName(UserId);
             if(ModelState.IsValid)
             {
                 a.UserID = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -89,32 +85,65 @@ namespace PinchofPepperV2.Controllers
             return Redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         }
 
-        //public void EmaelSender(string userEmail)
-        //{
-        //    var client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525)
-        //    {
-        //        Credentials = new NetworkCredential("515c6d0a0cfb9d", "8dffeaabb6464b"),
-        //        EnableSsl = true
-        //    };
-        //    client.Send("POP@pinchofpepper.com", userEmail, "Account Created!", "Congrats! Youve created an account on Pinch of Pepper");
-        //    Console.WriteLine("Sent");
-        //    //Console.ReadLine();
 
-        //    //using (SmtpClient smtp = new SmtpClient())
-        //    //{
-        //    //    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-        //    //    smtp.UseDefaultCredentials = false;
-        //    //    smtp.EnableSsl = true;
-        //    //    smtp.Host = "smtp.gmail.com";
-        //    //    smtp.Port = 465;
-        //    //    smtp.Credentials = new NetworkCredential("hattyhattington2003@gmail.com", "DanPaladin6012!");
-        //    //    smtp.Timeout = 20000;
+        //article edit and delete
+        [Authorize]
+        [HttpGet]
+        public IActionResult EditArticle(int? id)
+        {
+            if (id == null)
+                return NotFound();
 
-        //    //    smtp.Send("rsorensen@student.neumont.edu", "averystephens0@gmail.com", "Hello world!", "testbody123");
-        //    //    Console.WriteLine("Sent");
-        //    //}
+            Article foundArticle = dal.GetArticle(id);
 
-        //    //return RedirectToAction("Index", "Home");
-        //}
+            if (foundArticle == null) return NotFound();
+
+            return View(foundArticle);
+        }
+
+        [HttpPost]
+        public IActionResult EditArticle(Article a)
+        {
+            if (ModelState.IsValid)
+            {
+                a.UserID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                dal.EditArticle(a);
+
+                return RedirectToAction("Index", "Home", fragment: a.Id.ToString());
+            }
+            return View();
+
+        }
+
+        public IActionResult DeleteArticle(int? id)
+        {
+            if (dal.GetArticle(id) == null)
+            {
+                //validator
+                ModelState.AddModelError("ArticleId", "Cannot find article to delete");
+            }
+            if (ModelState.IsValid)
+            {
+                //deletes comments of post
+                //var temp = dal.GetPostComments(id);
+                //foreach (var comment in temp)
+                //{
+                //    DeleteComment(comment.Id);
+                //}
+
+                dal.RemoveArticle(id);
+            }
+            else
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public void UserIdVerify()
+        {
+            UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.UserId = UserId;
+        }
     }
 }

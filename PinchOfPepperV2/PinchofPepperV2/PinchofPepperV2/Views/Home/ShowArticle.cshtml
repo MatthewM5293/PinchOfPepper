@@ -4,13 +4,65 @@
 {
     <body class="align-content-center">
         <h1>@Model.Title</h1>
-        <h3>@Model.Date.ToLongDateString()</h3>
+        <h3><b>Published on: </b> @Model.Date.ToLongDateString()</h3>
+        @if (Model.EditDate != null)
+        {            
+            <h3><b>Edited On: </b>@Model.EditDate.Value.ToLongDateString()</h3>
+        }
+
         <h2>@Model.AuthorName </h2>
         <div class="text-center">@Model.Image1</div>
         <p class="text-center">@Model.ArticleText</p>
 
         <footer class="footer card-footer">@Model.Tag</footer>
     </body>
+
+    @if (ViewBag.UserId == Model.UserID)
+    {
+        <div class="card-footer text-muted">
+            <a asp-controller="Home" asp-action="EditArticle" asp-route-id="@Model.Id" class="btn btn-primary mx-2">
+                <i class="bi bi-pencil-square"></i> Edit
+            </a>
+
+            <a asp-controller="Home" asp-action="DeleteArticle" asp-route-id="@Model.Id" class="btn btn-danger mx-2">
+                <i class="bi bi-trash"></i> Delete
+            </a>
+        </div>
+    }
+
+    @*comments*@
+    @*<div class="card-footer text-muted">
+        <form asp-controller="Home" asp-action="AddComment" method="get">
+            <input name="PostID" type="hidden" value="@Model.Id" />
+            <button type="submit" class="btn btn-success">Add Comment</button>
+        </form>
+        <div class="card-footer text-muted">
+            @if (Model.Comments != null)
+            {
+
+                foreach (CommentModel comment in @Model.Comments)
+                {
+                    <partial name="_CommentPartialView.cshtml" for="@comment" />
+
+                    @if (ViewBag.UserId == comment.UserID)
+                    {
+                        <div class="card-footer text-muted">
+                            <a asp-controller="Home" asp-action="EditComment" asp-route-id="@comment.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+
+                            <a asp-controller="Home" asp-action="DeleteComment" asp-route-id="@comment.Id" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        </div>
+                    }
+                }
+
+            }
+        </div>
+    </div>
+        *@
+
 }
 else
 {

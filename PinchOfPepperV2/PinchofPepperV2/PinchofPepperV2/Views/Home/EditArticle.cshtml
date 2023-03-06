@@ -1,35 +1,30 @@
 ﻿@model Article
 
-<form asp-controller="Home" asp-action="CreateArticle" method="post">
+<form asp-controller="Home" asp-action="EditArticle" method="post">
     <div>
         <div class="mb-3">
-            <input asp-for="@Model.AuthorName" class="form-control" type="hidden" placeholder="Your name here" value="Test" />
-            <input asp-for="@Model.Date" class="form-control" type="hidden" value="@DateTime.Now" />
+            <input asp-for="@Model.AuthorName" class="form-control" type="hidden" value="@Model.AuthorName" />
+            <input asp-for="@Model.Date" class="form-control" type="hidden" value="@Model.Date" />
+            <input asp-for="@Model.EditDate" class="form-control" type="hidden" value="@DateTime.Now" />
         </div>
-        
+
         <div class="mb-3">
             <label asp-for="Title"></label>
-            <input asp-for="@Model.Title" class="form-control" placeholder="Title of Article" />
+            <input asp-for="@Model.Title" class="form-control" placeholder="Title of Article" value="@Model.Title" />
             <span asp-validation-for="Title" class="text-danger"></span> @*only error for title*@
         </div>
-        
+
         <div class="mb-3">
             <label asp-for="Description"></label>
             <input asp-for="@Model.Description" class="form-control" placeholder="Brief description of the Article below." />
             <span asp-validation-for="Description" class="text-danger"></span> @*only error for title*@
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="AuthorName"></label>
-            <input asp-for="@Model.AuthorName" class="form-control" placeholder="Author name" />
-            <span asp-validation-for="AuthorName" class="text-danger"></span> @*only error for title*@
         </div>
         <div class="mb-3">
             <label asp-for="Thumbnail"></label>
             <input asp-for="@Model.Thumbnail" class="form-control" placeholder="Thumbnail URL" />
             <span asp-validation-for="Thumbnail" class="text-danger"></span> @*only error for title*@
         </div>
-        
+
         <div class="mb-3">
             <label asp-for="Tag"></label>
             <input asp-for="@Model.Tag" class="form-control" placeholder="Tags" />
@@ -43,10 +38,10 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
     </div>
 </form>

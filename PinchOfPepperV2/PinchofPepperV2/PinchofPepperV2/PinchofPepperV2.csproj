@@ -23,4 +23,11 @@
     <Folder Include="APIS\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Home\EditArticle.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
