@@ -4,13 +4,9 @@
 {
     <body class="align-content-center">
         <h1>@Model.Title</h1>
-        <h3><b>Published on: </b> @Model.Date.ToLongDateString()</h3>
-        @if (Model.EditDate != null)
-        {            
-            <h3><b>Edited On: </b>@Model.EditDate.Value.ToLongDateString()</h3>
-        }
-
-        <h2>@Model.AuthorName </h2>
+        <h4>@Model.Date.ToLongDateString()</h4>
+        <h6>Author: @Model.AuthorName</h6>
+        <hr/>
         <div class="text-center">@Model.Image1</div>
         <p class="text-center">@Model.ArticleText</p>
 
@@ -28,6 +24,8 @@
             </a>
         </div>
     }
+
+    <hr/>
 
     @*comments*@
     <div class="card-footer text-muted">

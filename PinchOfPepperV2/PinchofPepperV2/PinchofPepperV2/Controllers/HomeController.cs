@@ -149,6 +149,11 @@ namespace PinchofPepperV2.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult Filter(string tag)
+        {
+            return View("Index", dal.FilterArticles(tag));
+        }
+
         //comments
 
         [Authorize]

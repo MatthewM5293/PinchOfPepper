@@ -1,11 +1,16 @@
 ﻿using PinchofPepperV2.Interfaces;
 using PinchofPepperV2.Models;
 using System;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PinchofPepperV2.Data
 {
     public class ArticleDAL : IArticleAccessLayer
     {
+
+        private static Regex _compiledUnicodeRegex = new Regex(@"[^\u0000-\u007F]", RegexOptions.Compiled);
+
         private ApplicationDbContext db;
         public ArticleDAL(ApplicationDbContext indb)
         {
@@ -42,7 +47,20 @@ namespace PinchofPepperV2.Data
 
         public IEnumerable<Article> FilterArticles(string tags)
         {
-            throw new NotImplementedException();
+            StringBuilder newStringBuilder = new StringBuilder();
+
+            if (tags != null)
+            {
+                newStringBuilder.Append(tags.Normalize(NormalizationForm.FormKD).Where(x => x < 128).ToArray());
+                tags = newStringBuilder.ToString();
+
+                if (tags != string.Empty)
+                {
+                    return GetArticles().Where(m => (!string.IsNullOrEmpty(m.Tag) && m.Tag.ToLower().Equals(tags.ToLower()))).ToList();
+                }
+            }
+
+            return GetArticles();
         }
 
         public string GetUserFirstName(string userId)

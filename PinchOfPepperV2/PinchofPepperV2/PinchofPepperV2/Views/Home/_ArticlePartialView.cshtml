@@ -3,43 +3,18 @@
 @if (Model != null)
 {
 
-    <div class="align-content-center grid-container" style="flex-basis:33%;" id="@Model.Id.ToString()">
-        <table>
-            <tr>
-                <th>
-                    <a asp-controller="Home" asp-action="ShowArticle" asp-route-id="@Model.Id"><img src="@Model.Thumbnail" onclick="ShowArticle"/></a>
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    <h7>@Model.Tag</h7>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h3><strong><i>@Model.Title</i></strong></h3>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h5>@Model.Description</h5>
-                </td>
-            </tr>
-        </table>
+    <div class="card mt-1 bg-light" style="flex-basis:33%" >
+        <div class="card-body">
+            <h6>@Model.Tag</h6>
+            <a asp-controller="Home" asp-action="ShowArticle" asp-route-id="@Model.Id"><img src="@Model.Thumbnail" onclick="ShowArticle" height="250" width="100%"/></a>
+            <a asp-controller="Home" asp-action="ShowArticle" asp-route-id="@Model.Id" style=""><h6 class="card-subtitle mb-2 mt-2"><strong>@Model.Title</strong></h6></a>
+            <p class="card-text">@Model.Description</p>
+        </div>
     </div>
 
 }
+
 else
 {
     <h1>Nothing to see here!</h1>
 }
-
-
-@*    <body class="align-content-center">
-        <h1>@Model.Title</h1>
-        <h2>@Model.AuthorName @Model.Date</h2>
-        <div class="text-center">@Model.Image1</div>
-        <p class="text-center">@Model.ArticleText</p>
-
-        <footer class="footer card-footer">@Model.Tag</footer>
-    </body>*@
