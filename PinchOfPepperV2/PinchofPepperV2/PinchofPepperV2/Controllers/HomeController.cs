@@ -244,6 +244,17 @@ namespace PinchofPepperV2.Controllers
             return RedirectToAction("ShowArticle", "Home", routeValues: RouteValues);
         }
 
+        //search
+        public IActionResult Search(string key)
+        {
+            if (String.IsNullOrEmpty(key))
+            {
+                return View("Index", dal.GetArticles());
+            }
+            //returns searched
+            return View("Index", dal.GetArticles().Where(c => c.Title.ToLower().Contains(key.ToLower())));
+        }
+
 
         public void UserIdVerify()
         {
