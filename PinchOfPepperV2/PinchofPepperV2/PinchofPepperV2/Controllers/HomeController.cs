@@ -9,7 +9,7 @@ using System.Net;
 
 namespace PinchofPepperV2.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private static string UserId;
@@ -24,19 +24,6 @@ namespace PinchofPepperV2.Controllers
 
         public IActionResult Index()
         {
-            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
-            if (userId == "" || userId == null)
-            {
-                
-            }
-            else 
-            {
-                UserIdVerify();
-                string test = dal.GetUserName(userId);
-                LocalUsername.SetLocalUsername(test);
-            }
-
-
             return View(dal.GetArticles());
         }
 
@@ -117,8 +104,10 @@ namespace PinchofPepperV2.Controllers
             {
                 a.UserID = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 dal.EditArticle(a);
-
-                return RedirectToAction("Index", "Home", fragment: a.Id.ToString());
+                var RouteValues = new RouteValueDictionary {
+                    { "id", a.Id }
+                };
+                return RedirectToAction("ShowArticle", "Home", routeValues: RouteValues);
             }
             return View();
 
@@ -242,14 +231,17 @@ namespace PinchofPepperV2.Controllers
             {
                 foundComment = dal.GetComment(id);
 
-                //temp delete
                 dal.RemoveComment(id);
             }
             else
             {
                 return View();
             }
-            return RedirectToAction("Article", "Home", foundComment.ArticleId);
+
+            var RouteValues = new RouteValueDictionary {
+                    { "id", foundComment.ArticleId }
+                };
+            return RedirectToAction("ShowArticle", "Home", routeValues: RouteValues);
         }
 
 

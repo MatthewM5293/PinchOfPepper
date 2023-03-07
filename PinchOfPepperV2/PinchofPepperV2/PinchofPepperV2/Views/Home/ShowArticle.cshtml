@@ -4,7 +4,11 @@
 {
     <body class="align-content-center">
         <h1>@Model.Title</h1>
-        <h4>@Model.Date.ToLongDateString()</h4>
+        <h4>Published on: @Model.Date.ToLongDateString()</h4>
+        @if (Model.EditDate != null)
+        {
+            <h4>Edited on: @Model.EditDate.Value.ToLongDateString()</h4>
+        }
         <h6>Author: @Model.AuthorName</h6>
         <hr/>
         <div class="text-center">@Model.Image1</div>
@@ -12,9 +16,10 @@
 
         <footer class="footer card-footer">@Model.Tag</footer>
 
+        <hr />
     @if (ViewBag.UserId == Model.UserID)
     {
-        <div class="card-footer text-muted">
+        <div class="card-footer text-muted"> Article Options: 
             <a asp-controller="Home" asp-action="EditArticle" asp-route-id="@Model.Id" class="btn btn-primary mx-2">
                 <i class="bi bi-pencil-square"></i> Edit
             </a>
