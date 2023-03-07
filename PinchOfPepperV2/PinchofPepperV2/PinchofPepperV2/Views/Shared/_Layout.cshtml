@@ -15,6 +15,9 @@
     <header>
        <nav class="navbar navbar-expand-lg navbar-light bg-light bg-primary">
             <div class="container-fluid">
+                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <img src="https://cdn.discordapp.com/attachments/1072330266883919902/1082483729198501948/za_hando_1-removebg-preview.png" width="50" />
+                </a>
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PinchOfPepper</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +36,6 @@
                                         <button type="submit" class="dropdown-item btn btn-success">Filter</button>
                                     </form>
                                 </div>
-
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -70,6 +72,25 @@
                 </div>
             </div>
         </nav>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+			<div class="offcanvas-header bg-dark">
+				<h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+            <div class="offcanvas-body bg-dark">
+				<div class="dropdown mt-3">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+						Dropdown button
+					</button>
+					<ul class="offcanvas-body bg-dark dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+						<form asp-controller="Home" asp-action="Filter" method="post">
+							<input name="tag" placeholder="Tag" class="dropdown-item" />
+							<button type="submit" class="dropdown-item btn btn-success">Filter</button>
+						</form>
+					</ul>
+				</div>
+			</div>
+		</div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
