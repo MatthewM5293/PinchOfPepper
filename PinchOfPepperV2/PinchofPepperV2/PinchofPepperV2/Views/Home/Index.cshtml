@@ -10,14 +10,16 @@
 }
 else
 {
+    <h1>Pinch if Pepper!</h1>
     <div class="d-flex flex-wrap">
         @foreach(Article article in Model)
         {
             <partial name="_ArticlePartialView" for="@article"/>
         }
+        <div>
+            <a asp-controller="Home" asp-action="CreateArticle" class=" float">
+                <h1 class="bi bi-plus-square"></h1>
+            </a>
+        </div>
     </div>
 }
-
-@*<form asp-controller="Home" asp-action="Email">
-    <button type="submit">Send Email</button>
-</form>*@

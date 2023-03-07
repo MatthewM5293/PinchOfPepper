@@ -16,9 +16,9 @@
 
         <footer class="footer card-footer">@Model.Tag</footer>
 
-        <hr />
     @if (ViewBag.UserId == Model.UserID)
     {
+        <hr />
         <div class="card-footer text-muted"> Article Options: 
             <a asp-controller="Home" asp-action="EditArticle" asp-route-id="@Model.Id" class="btn btn-primary mx-2">
                 <i class="bi bi-pencil-square"></i> Edit
@@ -36,8 +36,9 @@
     <div class="card-footer text-muted">
         <form asp-controller="Home" asp-action="AddComment" method="get">
             <input name="ArticleId" type="hidden" value="@Model.Id" />
-            <button type="submit" class="btn btn-success">Add Comment</button>
+                <button type="submit" class="btn btn-success"><i class="bi bi-plus-lg"></i> Add Comment</button>
         </form>
+        <hr />
         <div class="card-footer text-muted">
             @if (Model.Comments != null)
             {
